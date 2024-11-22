@@ -1,0 +1,46 @@
+[package]
+name = "rs-dosdate2str"
+version = "0.1.0"
+edition = "2021"
+
+[lints.rust]
+unsafe_code = "deny"
+
+[lints.clippy]
+unwrap_used = "forbid"
+
+[lib]
+crate-type = [
+	"cdylib",
+	"rlib",
+]
+
+[profile.release-wasm]
+inherits = "release"
+lto = true
+strip = true
+opt-level = 's'
+codegen-units = 16
+
+[dependencies.rs-day2str]
+path = "../rs-day2str"
+
+[dependencies.rs-month2str]
+path = "../rs-month2str"
+
+[dependencies.rs-dosyear2str]
+path = "../rs-dosyear2str"
+
+[features]
+default = [
+	"dosdate2year",
+	"dosdate2month",
+	"dosdate2day",
+	"dostime2str",
+]
+
+dosdate2year = []
+dosdate2month = []
+dosdate2day = []
+
+dostime2str = []
